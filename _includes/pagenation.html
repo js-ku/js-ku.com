@@ -1,0 +1,27 @@
+	<ul class="pagination">
+		 {% if paginator.previous_page == 2 %}
+		    <li><a href="/">«</a></li>
+		 {% elsif paginator.previous_page %}
+		 	<li><a href="/{{paginator.previous_page_path}}">«</a></li>
+		 {% else %}
+
+		  <li><a href="javascript:void(0)">«</a></li>
+		 {% endif %}
+
+		 {%for page in (1..paginator.total_pages) limit:10 %}
+		 	{% if paginator.page == page %}
+		 	<li class="active"> <a href="javascript:void(0)">{{page}}</a> </li>	
+		 	
+		 	{% elsif page == 1 %}
+		 	<li><a href="/">{{page}}</a></li>
+		 	{% else %}
+	 		<li><a href="/page_{{page}}">{{page}}</a></li>
+	 		{% endif %}
+		 {% endfor %}
+
+	  {% if paginator.next_page %}
+	    <li><a href="/page_{{paginator.next_page}}">»</a></li>
+	  {% else %}
+	    <li><a href="javascript:void(0)">»</a></li>
+	  {% endif %}
+	</ul>
