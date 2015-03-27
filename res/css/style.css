@@ -1944,7 +1944,6 @@ article img.pull-right, article .align-right{
 @media (max-width: 480px) {
 	.bottom-article a.pull-right {
 		float:left;
-		margin-top:20px;
 	}
 
 
