@@ -30,9 +30,9 @@
 				<div class="widget">
 					<h5 class="widgetheading">友情链接</h5>
 					<ul class="link-list">
-						<li><a href="http://j-ui.com" target="_blank">富客户端框架-jUI</a></li>
-						<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
-						<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						{% for link in site.data.link %}
+							<li><a href="{{link.url}}" target="_blank">{{link.keyword}}</a></li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>
@@ -50,10 +50,12 @@
 				<div class="widget">
 					<h5 class="widgetheading">Collaborators</h5>
 						<div class="flickr_badge" id="authors_div">
+						    {% for author in site.data.authors %}
+					            <div class="flickr_badge_image"><img src="{{ site.baseurl }}{{ author.avatar }}" alt="{{ author.author }}" title="{{ author.author }}"></div>	
+					        {% endfor %}	
 							
 					   
-					    
-					</div>
+					    </div>
 					<div class="clear">
 					</div>
 				</div>
