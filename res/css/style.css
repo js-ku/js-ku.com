@@ -1657,6 +1657,7 @@ section.demogrid .col-lg-12.nest {
 a.scrollup {
 	outline:0;
 	text-align: center;
+  	margin-bottom: 20px
 }
 
 a.scrollup:hover,a.scrollup:active,a.scrollup:focus {
