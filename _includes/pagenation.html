@@ -1,5 +1,6 @@
+	<!--分页竟然从 0 开始-->
 	<ul class="pagination" data-test="{{paginator.previous_page}}">
-		 {% if paginator.previous_page == 2 %}
+		 {% if paginator.previous_page == 1 %}
 		    <li><a href="/">«</a></li>
 		 {% elsif paginator.previous_page %}
 		 	<li><a href="/{{paginator.previous_page_path}}">«</a></li>
