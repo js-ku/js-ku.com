@@ -41,7 +41,7 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 
 	 $ cd youFolder
 	 ＃将github的内容clone下来
- 	 $ git clone https://wwww.github.com/js-ku/js-ku.com.git
+	 $ git clone https://wwww.github.com/js-ku/js-ku.com.git
  	 
  	 
 现在有一个问题？我们每次提交`Github`的文章的时候都需要去 阿里云 `git pull`
