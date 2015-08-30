@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>JavaScript 声明提升 - js开发库</title>
+<title>JavaScript 常见问题汇总 - js开发库</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="JavaScript 声明提升(hoisting) 很容易忽略从而造成Bug">
+<meta name="description" content="JavaScript 他的设计有很多的问题、或者你也可以叫他'特性'。">
 <meta name="keywords" content="JavaScript变量提升,JavaScript函数提升,JavaScript常见问题">
 <meta name="author" content="li">
 <link href="/res/css/bootstrap.min.css" rel="stylesheet" />
@@ -12,13 +12,13 @@
 <link href="/res/css/jcarousel.css" rel="stylesheet" />
 <link href="/res/css/flexslider.css" rel="stylesheet" />
 <link href="/res/css/style.css" rel="stylesheet" />
-<!-- Theme skin -->
 <link href="/res/skins/default.css" rel="stylesheet" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<meta name="baidu-site-verification" content="WUscNEiGao" />
 
 
 </head>
@@ -59,148 +59,132 @@
 	<!-- end header -->
 	<section id="content">
 	<div class="container">
- 		<h1 id="javascript-">JavaScript 变量提升</h1>
+		
+ 		<h1 id="javascript-">JavaScript 常见问题汇总</h1>
 
 <blockquote>
-  <p>JavaScript Hoisting</p>
+  <p>JavaScript Frequently Asked Questions</p>
 </blockquote>
 
-<hr />
 <blockquote>
-  <p>JavaScript 的历史原因决定JavaScript有许多问题，和让人容易忽略的地方。但都是重要的。</p>
+  <p>JavaScript 作为一门编程语言，JavaScript 的流行几乎不受他的质量影响。</p>
 </blockquote>
 
-<h3 id="var-">1.  var 声明变量</h3>
+<h3 id="section">1.  作用域</h3>
+<p><code>JavaScript</code> 没有块级作用域。在其他编程语言中(<code>c</code>、<code>java</code>..)，一个代码块(<code>{}</code>)会创造一个作用域，在这个作用域声明的变量在外部是不可见的。
+因为<code>JavaScript</code> 不存在块级作用域。所以在函数中，代码块内外声明的变量都是可见的。 在其他编程语言中，变量总是在使用之前就乎其去声明，但是在<code>JavaScript</code>中
+确是在函数开始时声明变量。</p>
 
-<h4 id="hoisting">声明提升(hoisting)</h4>
+<h3 id="section-1">2. 自动插入分号</h3>
 
-<p>先看一段代码</p>
-
-<pre><code>var v = 'hoisting';
-function test_hoisting(){
-	console.log(v);
-	var v = 'hoisted';
-}
+<pre><code>function test1(obj){
+    return 
+    {
+        name:obj.name
+    }
+};
+var o = {name:'js-ku'};
+test1(o)
 </code></pre>
 
 <p>结果是什么呢：<code>undefined</code>.
-因为 <code>声明提升</code>的原因 以上代码 和下面的代码 同理。</p>
+ 因为 <code>JavaScript</code> 有个自动修复机制，没有以分号结尾时，他会自作聪明插入分号来修复程序。
+所以上面的代码的 <code>return;</code> 没有返回值，就是 <code>undefined</code>。把 花括号 放在return 后。就可以避免这个问题。</p>
 
-<pre><code>var v = 'hoisting';
-function test_hoisting(){
-	var v;
-	console.log(v);
-	v = 'hoisted';
-}
+<h3 id="typeof">4.typeof</h3>
+<p><code>typeof</code> 运算符返回一个识别其类型的字符串；</p>
+
+<p>例如：</p>
+
+<pre><code>typeof 98.9 // 'number'
+typeof 'asd' // 'string'
 </code></pre>
 
-<p>function作用域里的变量 遮盖了上层作用域变量，声明又被提升 所以就会出现<code>undefined</code></p>
+<p>但是：</p>
 
-<blockquote>
-  <p><code>声明提升</code>:是JavaScript 所有声明默认的行为（包括<code>function</code>） 提升的范围就是当前作用域的顶部。
- JavaScript 只是提升声明，并不提升初始化。</p>
-</blockquote>
-
-<p>再看下面的代码：</p>
-
-<pre><code>var test_hoisting2 = 3;
-
-function test_hoisting2(){
-
-}
-console.log(typeof test_hoisting2);
+<pre><code>typeof null // 'object' wtf?
+typeof NaN // 'number' wtf?
 </code></pre>
 
-<p>结果是 <code>number</code>为什么？</p>
+<p>如果你想判断是 <code>null</code> 可以这样：</p>
 
-<p>之前说过<code>function</code> 也会提升。由于在 <code>JavaScript</code>中 <code>function</code>是一等公民，<code>function</code> 会先提升. 
-<strong>函数的声明 比 变量的声明 具有高的优先级。</strong> 
-所以 <code>function test_hoisting2</code> 优先提升，被 <code>var test_hoisting2</code>覆盖。</p>
-
-<blockquote>
-  <p>关于变量提升的问题都大同小异，在实际开发中要避免这个特性，把变量定义在顶部。就会避免出现不必要的问题。</p>
-</blockquote>
-
-<p>在 Chrome 里有个奇怪的问题：</p>
-
-<pre><code>console.log(typeof name);
-var name = "Chrome";
-console.log(typeof name); 
+<pre><code>null_var === null //true
 </code></pre>
 
-<p>经过上面示例，我们期待的结果是 <code>undefined</code> <code>string</code>. 但是结果却都是 <code>string</code>.如果我们再试一次，将<code>name</code>换成 其他的 <code>name2</code> 就是我们预期的结果了.原因是 
-<strong>Chrome</strong>
-可能初始化 <code>name</code> 导致我们使用时，已经声明完成，所以就是<code>string</code>了</p>
+<p>如果想判断为对象且不为空：</p>
 
-<hr />
-
-<h3 id="section">2. 关于函数提升</h3>
-
-<pre><code>console.log(typeof foo);
-console.log(typeof bar);
-console.log(typeof add);
-//函数的声明
-function foo(){
-    alert('foo');
-}
-//命名函数表达式
-var bar = function(){
-    alert('bar');
-};
-// 函数表达式-匿名函数
-var add = function(a,b){
-return a+b;
-};
+<pre><code>object&amp;&amp; typeof object == 'object' //true
 </code></pre>
 
-<p>结果是<code>function</code> <code>undefined</code> <code>undefined</code> 因为 <code>foo()</code>是根据<code>function</code>提升的。
-<code>foo()</code>被提升到了顶部且能正常运行，而bar()的定义并没有得到提升，
-仅有它的声明被提升，所以，当执行bar()的时候显示结果为undefined而不是作为函数来使用。</p>
+<p>如果你想判断 <code>NaN</code>：</p>
 
-<hr />
-
-<p>一个方法总结声明<code>提升</code></p>
-
-<pre><code>var global = 'global';
-function foo(){alert(global);}
-
-function hoist(){
-    console.log(typeof foo);//function
-    console.log(typeof bar);//undefined
-    console.log(typeof global);//undefined
-
-    foo();//'undefined' global仅提升声明，并未提升初始化。
-    bar();//TypeError: 'undefined' is not a function  
-    var global = 'local';
-    //变量foo以及实现者被提升
-    function foo(){
-        console.log(global);
-    }
-
-    //仅变量bar被提升，函数实现部分 并未被提升
-    var bar = function(){
-        alert(global);
-    };
-}
-
-hoist(); 
+<pre><code>NaN_var === NaN_var //NaN 就是一个连自己都不相等的东西。 
 </code></pre>
 
+<h3 id="parseint">5.parseInt</h3>
+<p><code>parseInt</code> 函数 可以把字符串转换为整数的函数，他在遇到一个 非数字 时会停止转换。
+ 所以：</p>
+
+<pre><code>parseInt("123@123"); //123
+parseInt("asdasd");  //NaN
+</code></pre>
+
+<p>如果我们传入的参数不是 <code>string</code> 类型，会先调用 <code>String()</code></p>
+
+<pre><code>String(0.0000008);  //'8e-7'
+</code></pre>
+
+<p>可想而知如果</p>
+
+<pre><code>parseInt(0.0000008)；//8
+</code></pre>
+
+<h3 id="section-2">6. + 加</h3>
+<ul>
+  <li>既是加法操作符,同时也是字符串连接符。他什么时候是加什么时候连接字符串、取决于参数的类型。
+ 使用 <code>+</code> 前 注意保证类型一致性。否则 你得到的结果不是你想要的。</li>
+</ul>
+
+<p>如果两个或多个值中 有一个为字符串，既是为空。会把其他的不是<code>string</code>的类型转换为字符串，然后连接再一起。</p>
+
+<p>如果都是数字，返回他们的和。</p>
+
+ 		<div class="row">
+ 			<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/javascript/JavaScript-FAQ" data-title="JavaScript 常见问题汇总" data-url="/javascript/JavaScript-FAQ.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"js-ku"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+		</div>
 	</div>
+	 
 	</section>
+
 	 <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="widget">
-					<h5 class="widgetheading">Get in touch with us</h5>
+					<h5 class="widgetheading">联系我们</h5>
 					<address>
-					<strong>Moderna company Inc</strong><br>
-					 Modernbuilding suite V124, AB 01<br>
-					 Someplace 16425 Earth </address>
+					<strong>JS开发库</strong><br>
+					 由一群热爱技术的年轻人创建。<br>
+					  </address>
 					<p>
-						<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-						<i class="icon-envelope-alt"></i> email@domainname.com
+						<i class="icon-phone"></i> QQ群 364778978 <br>
+						<i class="icon-envelope-alt"></i> service@js-ku.com
 					</p>
 				</div>
 			</div>
@@ -220,8 +204,13 @@ hoist();
 				<div class="widget">
 					<h5 class="widgetheading">友情链接</h5>
 					<ul class="link-list">
-						<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
-						<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
+							<li><a href="http://j-ui.com" target="_blank">富客户端框架-jUI</a></li>
+						
+							<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
+						
+							<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -239,10 +228,16 @@ hoist();
 				<div class="widget">
 					<h5 class="widgetheading">Collaborators</h5>
 						<div class="flickr_badge" id="authors_div">
+						    
+					            <div class="flickr_badge_image"><img src="/res/authors/li.png" alt="li" title="li"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/sanlang.png" alt="EthanOrange" title="EthanOrange"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/hjun.jpg" alt="H君" title="H君"></div>	
+					        	
 							
 					   
-					    
-					</div>
+					    </div>
 					<div class="clear">
 					</div>
 				</div>
@@ -261,7 +256,7 @@ hoist();
 				</div>
 				 <div class="col-lg-6">
 					<ul class="social-network">
-						<li><a href="https://github.com/Da-Li/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
+						<li><a href="https://github.com/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
 <!-- 						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
 						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
@@ -292,25 +287,15 @@ hoist();
 <script src="/res/js/custom.js"></script>
 <script src="/res/js/js-ku.js"></script>
 <script src="/res/js/google-code-prettify/run_prettify.js?lang-js&skin=tomorrow-night"></script>
-	<script>
-	$(document).ready(function() {
-	    $.getJSON("/res/authors/authors.json",
-		    function(data) {
-		      $.each(data,
-			      function(i, item) {
-			        var content = '<div class="flickr_badge_image"><img src="'+$("#baseurl").val()+'/'+item.img_url+'" alt="'+item.title+'" title="'+item.title+'"> </div>';
-			        $("#authors_div").append(content);
-			      });
-		    });
-	  	});
+	<script>	
 		/*百度统计*/
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
+		 var _hmt = _hmt || [];
+		 (function() {
+		   var hm = document.createElement("script");
+		   hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
+		   var s = document.getElementsByTagName("script")[0]; 
+		   s.parentNode.insertBefore(hm, s);
+		 })();
 	</script>
 
 </body>

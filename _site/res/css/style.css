@@ -1657,6 +1657,7 @@ section.demogrid .col-lg-12.nest {
 a.scrollup {
 	outline:0;
 	text-align: center;
+  	margin-bottom: 20px
 }
 
 a.scrollup:hover,a.scrollup:active,a.scrollup:focus {
@@ -1944,7 +1945,6 @@ article img.pull-right, article .align-right{
 @media (max-width: 480px) {
 	.bottom-article a.pull-right {
 		float:left;
-		margin-top:20px;
 	}
 
 

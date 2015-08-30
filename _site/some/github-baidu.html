@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>协同合作，开发文档。 - js开发库</title>
+<title>解决Github Pages禁止百度爬虫的方法 - js开发库</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="js-ku 开源网站项目。">
-<meta name="keywords" content="md提交示例,文件解释。">
+<meta name="description" content="Github Pages 由于某些原因禁止了百度爬虫,百度抓取也就失败来。本身是拒绝百毒的 考虑到还是大量的用户使用baidu而不是google的时候就决定要解决这个问题了。">
+<meta name="keywords" content="JavaScript变量提升,JavaScript函数提升,JavaScript常见问题">
 <meta name="author" content="li">
 <link href="/res/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/res/css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="/res/css/jcarousel.css" rel="stylesheet" />
 <link href="/res/css/flexslider.css" rel="stylesheet" />
 <link href="/res/css/style.css" rel="stylesheet" />
-<!-- Theme skin -->
 <link href="/res/skins/default.css" rel="stylesheet" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<meta name="baidu-site-verification" content="WUscNEiGao" />
 
 
 </head>
@@ -59,126 +59,114 @@
 	<!-- end header -->
 	<section id="content">
 	<div class="container">
- 		<h1 id="section">协同合作，开发文档。</h1>
+		
+ 		<h1 id="github-pages">解决Github Pages禁止百度爬虫的方法</h1>
 
 <blockquote>
-  <p>愿景：成为一个 开放，分享与协作网站。</p>
+  <p>Github 因为某些原因拒绝了百度的爬虫</p>
 </blockquote>
 
-<hr />
+<p><img src="/res/img/page/some/github_baidu_s.jpg" alt="github" /></p>
 
-<h2 id="section-1">需要遵守的约定</h2>
+<h3 id="google-">Google 搜索答案</h3>
+<p>####善用搜索引擎</p>
 
-<blockquote>
-  <p>Convention</p>
-</blockquote>
+<p>网上大部分说的都是 CDN 和 换供应商，<code>github</code>还是很难换掉。
+关于这个CDN 的可行性，要保证百度的爬虫能访问到 CDN，而且免费的不好用，付费的不划算。所以考虑其他解决办法</p>
 
-<p>1.提交各自文件<code>xxx.md</code>到 <em>_posts</em> 文件夹下。</p>
+<h3 id="section">解决方案</h3>
+<p>1.不考虑替换 Github</p>
 
-<p>2.<code>xxx.md</code> 的命名规范 <code>2015-03-12-title.md</code></p>
+<p>2.CDN可行性不好 不考虑</p>
 
-<p>3.<code>xxx.md</code>的配置</p>
+<h4 id="github-pages---">Github Pages 配合 阿里云 来解决</h4>
+<p>  由于刚好有阿里云服务器，就先尝试用这个办法。
+Github Pages 是支持静态页面的，Jekyll <a href="https://help.github.com/articles/using-jekyll-with-pages/">github 官方</a> 为了和Github Pages一致 那么我们就需要在 阿里云上搭建Jekyll 环境。</p>
 
-<p>  3.1 categories <em>_posts</em> 下的文件夹/分类</p>
+<pre><code>＃关于环境搭建的问题，不是这次的主要内容
+$ apt-get install ruby
+$ apt-get install ruby-dev
+＃jekyll 需要ruby版本大于1.9.2
+$ gem install jekyll
+</code></pre>
 
-<p>  3.2 show_type 列表展示的类别。[image,slider,video]</p>
+<p>当环境搭好后</p>
 
-<p>  3.3 show_intro 根据 <code>show_type</code>。如果show_type: image 则 show_intro： 就是图片链接地址（相对路径）;</p>
+<pre><code> $ cd youFolder
+ ＃将github的内容clone下来
+ 	 $ git clone https://wwww.github.com/js-ku/js-ku.com.git
+</code></pre>
 
-<p>  3.3 intro 简述。</p>
+<p>现在有一个问题？我们每次提交<code>Github</code>的文章的时候都需要去 阿里云 <code>git pull</code>
+考虑使用 定时任务 设定时间自动拉代码。</p>
 
-<p>  3.4 title 标题</p>
+<p>新建sh脚本。</p>
 
-<p>  3.5 author 作者</p>
+<pre><code>cd youFolder
+git pull
+cd youFolder
+screen jekyll serve -w
+</code></pre>
 
-<p>  3.6 keyword 页面关键词</p>
+<p>添加任务</p>
 
-<p>  3.6 layout 选择模板（detail_tmp）</p>
+<pre><code>#查看你的所有的任务
+$ crontab -l
+#修改 第一次修改会有注释可以看下关于时间的
+$ crontab -e
+＃添加任务
+$ ＊ 2 ＊ ＊ ＊ /bin/bash /sh脚本的路径
+</code></pre>
 
-<p>4.<a href="http://lixiaoshenxian.com/markdown.html">markdown</a> 写作方式</p>
-
-<p>5.文件夹</p>
-
-<p>  5.1 _includes 插入文件</p>
-
-<p>  5.2 _layouts 模板文件</p>
-
-<p>  5.3 _posts 提交的文件 .md</p>
-
-<p>  5.4 _site jekyll生成的。</p>
-
-<p>  5.6 res 资源文件(css,js,images..)</p>
-
-<p>  5.7 _config.yml 配置文件</p>
-
-<hr />
-<p>#注意事项</p>
-
-<p>1.<code>show_type </code>与 <code>show_intro</code> 对照关系。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>show_type</th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
-      <th>show_intro</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>image</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>图片路径（相对）</td>
-    </tr>
-    <tr>
-      <td>slider</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>轮播图，图片路径（相对）用 ‘;’分开</td>
-    </tr>
-    <tr>
-      <td>video</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>暂不支持</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>2.注意图片尺寸。</p>
-
-<p>3.图片地址</p>
-
-<p> 图片统一在 res/img/page/categories(文章分类，在xx.md中有配置。) 下</p>
+<p>设定为凌晨两点 去执行。就全部完成</p>
 
 <hr />
+<p>然后将域名解析到阿里云上 就完成了，现在就可以使用<code>Github</code>的代码管理 阿里云的国内速度，百度也可以收录了。虽然大家都讨厌百毒 还是有很多人使用百度搜索 想让更多的人看到自己的博客还是要考虑百度收录的。</p>
 
-<blockquote>
-  <p>其他未尽事宜 联系 qq 1010420114</p>
-</blockquote>
+<p>写在后面</p>
 
+<p>这些内容弄了两天 <code>ruby</code>的版本 <code>jekyll</code>安装，等等。如果有相关的问题可以直接回复或者邮件（<code>li#js-ku.com</code>）。
+<script>
+//加入我们吧 http://wwww.github.com/js-ku
+var i = 0;setInterval(function(){location.hash=['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘'][i++%8]}, 50);
+</script></p>
 
+ 		<div class="row">
+ 			<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/some/github-baidu" data-title="解决Github Pages禁止百度爬虫的方法" data-url="/some/github-baidu.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"js-ku"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+		</div>
 	</div>
+	 
 	</section>
+
 	 <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="widget">
-					<h5 class="widgetheading">Get in touch with us</h5>
+					<h5 class="widgetheading">联系我们</h5>
 					<address>
-					<strong>Moderna company Inc</strong><br>
-					 Modernbuilding suite V124, AB 01<br>
-					 Someplace 16425 Earth </address>
+					<strong>JS开发库</strong><br>
+					 由一群热爱技术的年轻人创建。<br>
+					  </address>
 					<p>
-						<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-						<i class="icon-envelope-alt"></i> email@domainname.com
+						<i class="icon-phone"></i> QQ群 364778978 <br>
+						<i class="icon-envelope-alt"></i> service@js-ku.com
 					</p>
 				</div>
 			</div>
@@ -198,8 +186,13 @@
 				<div class="widget">
 					<h5 class="widgetheading">友情链接</h5>
 					<ul class="link-list">
-						<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
-						<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
+							<li><a href="http://j-ui.com" target="_blank">富客户端框架-jUI</a></li>
+						
+							<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
+						
+							<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -217,10 +210,16 @@
 				<div class="widget">
 					<h5 class="widgetheading">Collaborators</h5>
 						<div class="flickr_badge" id="authors_div">
+						    
+					            <div class="flickr_badge_image"><img src="/res/authors/li.png" alt="li" title="li"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/sanlang.png" alt="EthanOrange" title="EthanOrange"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/hjun.jpg" alt="H君" title="H君"></div>	
+					        	
 							
 					   
-					    
-					</div>
+					    </div>
 					<div class="clear">
 					</div>
 				</div>
@@ -239,7 +238,7 @@
 				</div>
 				 <div class="col-lg-6">
 					<ul class="social-network">
-						<li><a href="https://github.com/Da-Li/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
+						<li><a href="https://github.com/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
 <!-- 						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
 						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
@@ -270,25 +269,15 @@
 <script src="/res/js/custom.js"></script>
 <script src="/res/js/js-ku.js"></script>
 <script src="/res/js/google-code-prettify/run_prettify.js?lang-js&skin=tomorrow-night"></script>
-	<script>
-	$(document).ready(function() {
-	    $.getJSON("/res/authors/authors.json",
-		    function(data) {
-		      $.each(data,
-			      function(i, item) {
-			        var content = '<div class="flickr_badge_image"><img src="'+$("#baseurl").val()+'/'+item.img_url+'" alt="'+item.title+'" title="'+item.title+'"> </div>';
-			        $("#authors_div").append(content);
-			      });
-		    });
-	  	});
+	<script>	
 		/*百度统计*/
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
+		 var _hmt = _hmt || [];
+		 (function() {
+		   var hm = document.createElement("script");
+		   hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
+		   var s = document.getElementsByTagName("script")[0]; 
+		   s.parentNode.insertBefore(hm, s);
+		 })();
 	</script>
 
 </body>

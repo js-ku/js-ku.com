@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Jekyll 安装教程 - js开发库</title>
+<title>JavaScript 常见问题汇总2 - js开发库</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Jekyll 安装教程">
-<meta name="keywords" content="js-ku协作开发，github 教程，jekyll教程">
+<meta name="description" content="JavaScript 他的设计有很多的问题、或者你也可以叫他'特性'。">
+<meta name="keywords" content="JavaScript变量提升,JavaScript函数提升,JavaScript常见问题">
 <meta name="author" content="li">
 <link href="/res/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/res/css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="/res/css/jcarousel.css" rel="stylesheet" />
 <link href="/res/css/flexslider.css" rel="stylesheet" />
 <link href="/res/css/style.css" rel="stylesheet" />
-<!-- Theme skin -->
 <link href="/res/skins/default.css" rel="stylesheet" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<meta name="baidu-site-verification" content="WUscNEiGao" />
 
 
 </head>
@@ -59,56 +59,103 @@
 	<!-- end header -->
 	<section id="content">
 	<div class="container">
- 		<h1 id="js-ku">js-ku协作开发文档</h1>
+		
+ 		<h1 id="javascript-2">JavaScript 常见问题汇总2</h1>
 
-<hr />
+<blockquote>
+  <p>JavaScript Frequently Asked Questions</p>
+</blockquote>
 
-<h2 id="github--jekyll">GitHub 与 Jekyll</h2>
+<blockquote>
+  <p>JavaScript 作为一门编程语言，JavaScript 的流行几乎不受他的质量影响。</p>
+</blockquote>
 
-<p><img src="/res/img/page/test/open-source.png" alt="jekyll和github教程" /></p>
+<h3 id="nan">1.  NaN</h3>
+<p><code>NaN</code> 在<code>JavaScript</code> 中定义的是一个特殊数量值。表示不是一个数字(Not a Number)</p>
 
-<p>1.下载Rubyisntallers<a href="http://rubyinstaller.org/downloads/">downloads</a> 一路下一步。</p>
-
-<p>2.下载<code>Devkit</code> 就在下载<code>Ruby</code>的下面。完成后解压。注意和Ruby版本一致。</p>
-
-<p>3.用<code>cmd</code> cd 到 Devkit 目录，运行。</p>
-
-<pre><code>ruby dk.rb init 
+<pre><code>typeof NaN === 'number';// true
 </code></pre>
 
-<p>4.修改<code>config.yml</code> 根据示例，添加<code>Ruby</code> 和 <code>Devkit</code>的路径。</p>
+<p>尽管返回值为<code>true</code>。
+ 如果你的运算结果为 <code>NaN</code> 那一定是有某一个值为<code>NaN</code>。
+NaN是一个奇怪的类型。如果你想要检测一个变量是否为<code>NaN</code>。<code>typeof</code> 是不能分辨 数字的和<code>NaN</code>的区别。
+ 可以使用这样的方法：</p>
 
-<p>5.执行</p>
-
-<pre><code>ruby dk.rb install
+<pre><code>NaN == NaN;//false
+NaN === NaN;//false
 </code></pre>
 
-<p>6.安装 Jekyll(后续，安装Jeykyll 问题汇总。)</p>
+<p>在ECMAScript6中提供了一个方法 <code>isNaN()</code> 来判断是否为<code>NaN</code></p>
 
-<pre><code>gem install jekyll
+<pre><code>isNaN(NaN);       // true
+isNaN(undefined); // true
+isNaN({});        // true
+
+isNaN(true);      // false
+isNaN(null);      // false
+isNaN(37);        // false
 </code></pre>
 
-<p>7.下载完成.我们可以cd 到从Github clone 下来的项目。</p>
+<h3 id="section">2. == 与 ===</h3>
+<p>在<code>JavaScript</code>中提供了两组比较的运算符:<code>==</code> 相等，<code>!=</code> 不等 和 <code>===</code> 全等，<code>!==</code> 全不等。
+<code>==</code> 和 <code>!=</code> 判断比较的时候，如果类型不同，会试图进行强制类型转换。有些规则很难理解。
+<code>===</code> 和 <code>!==</code> 在判断的时候，如果类型不同会返回<code>false</code>。正如所期望的那样.</p>
 
-<pre><code>jekyll serve
+<pre><code>'' == '0';  //false
+0 == '';    //true
+'0' == 0; //true
+
+false == '0'; //false
+false == '';  //false
 </code></pre>
 
+<p>如果你觉得上面的不可思议，下面的就更不能理解。</p>
 
+<pre><code>false == undefined; //false
+false == null;      //false 
+null == undefined;  //true wtf?
+</code></pre>
+
+<p>这 <code>false</code> 与 <code>undefined</code> 和 <code>null</code> 在 <code>==</code> 比较的时候都是<code>false</code>。根据 <em>传递性</em> <code>null</code> 和 <code>undefined</code> 也应该是 <code>false</code>
+<code>==</code> 却违背了 <em>传递性</em>。这些让人匪夷所思的问题,在<code>===</code> 和 <code>!==</code> 身上不会发生。所以建议使用 <code>===</code> 和 <code>!==</code> 做比较运算。</p>
+
+
+ 		<div class="row">
+ 			<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/javascript/JavaScript-FAQ-2" data-title="JavaScript 常见问题汇总2" data-url="/javascript/JavaScript-FAQ-2.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"js-ku"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+		</div>
 	</div>
+	 
 	</section>
+
 	 <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="widget">
-					<h5 class="widgetheading">Get in touch with us</h5>
+					<h5 class="widgetheading">联系我们</h5>
 					<address>
-					<strong>Moderna company Inc</strong><br>
-					 Modernbuilding suite V124, AB 01<br>
-					 Someplace 16425 Earth </address>
+					<strong>JS开发库</strong><br>
+					 由一群热爱技术的年轻人创建。<br>
+					  </address>
 					<p>
-						<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-						<i class="icon-envelope-alt"></i> email@domainname.com
+						<i class="icon-phone"></i> QQ群 364778978 <br>
+						<i class="icon-envelope-alt"></i> service@js-ku.com
 					</p>
 				</div>
 			</div>
@@ -128,8 +175,13 @@
 				<div class="widget">
 					<h5 class="widgetheading">友情链接</h5>
 					<ul class="link-list">
-						<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
-						<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
+							<li><a href="http://j-ui.com" target="_blank">富客户端框架-jUI</a></li>
+						
+							<li><a href="http://www.qeo.cn/31/" target="_blank">网络工程师培训</a></li>
+						
+							<li><a href="http://www.lingjianfeng.com/" target="_blank">Cocos2d-JS 教程</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -147,10 +199,16 @@
 				<div class="widget">
 					<h5 class="widgetheading">Collaborators</h5>
 						<div class="flickr_badge" id="authors_div">
+						    
+					            <div class="flickr_badge_image"><img src="/res/authors/li.png" alt="li" title="li"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/sanlang.png" alt="EthanOrange" title="EthanOrange"></div>	
+					        
+					            <div class="flickr_badge_image"><img src="/res/authors/hjun.jpg" alt="H君" title="H君"></div>	
+					        	
 							
 					   
-					    
-					</div>
+					    </div>
 					<div class="clear">
 					</div>
 				</div>
@@ -169,7 +227,7 @@
 				</div>
 				 <div class="col-lg-6">
 					<ul class="social-network">
-						<li><a href="https://github.com/Da-Li/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
+						<li><a href="https://github.com/js-ku" target="_blank" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a></li>
 <!-- 						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
 						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
@@ -200,25 +258,15 @@
 <script src="/res/js/custom.js"></script>
 <script src="/res/js/js-ku.js"></script>
 <script src="/res/js/google-code-prettify/run_prettify.js?lang-js&skin=tomorrow-night"></script>
-	<script>
-	$(document).ready(function() {
-	    $.getJSON("/res/authors/authors.json",
-		    function(data) {
-		      $.each(data,
-			      function(i, item) {
-			        var content = '<div class="flickr_badge_image"><img src="'+$("#baseurl").val()+'/'+item.img_url+'" alt="'+item.title+'" title="'+item.title+'"> </div>';
-			        $("#authors_div").append(content);
-			      });
-		    });
-	  	});
+	<script>	
 		/*百度统计*/
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
+		 var _hmt = _hmt || [];
+		 (function() {
+		   var hm = document.createElement("script");
+		   hm.src = "//hm.baidu.com/hm.js?d71753d88b8facfc31e2ef23e6a4f540";
+		   var s = document.getElementsByTagName("script")[0]; 
+		   s.parentNode.insertBefore(hm, s);
+		 })();
 	</script>
 
 </body>
