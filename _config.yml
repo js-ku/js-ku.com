@@ -1,6 +1,6 @@
 encoding: utf-8
 
-baseurl : http://js-ku.com
+baseurl : /
 permalink : /:categories/:title.html
 markdown: kramdown
 # paginate: 5
