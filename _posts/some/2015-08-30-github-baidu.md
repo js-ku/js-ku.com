@@ -1,9 +1,9 @@
 ---
 layout: detail_tmp
 title: 解决Github Pages禁止百度爬虫的方法
-intro: Github Pages 由于某些原因禁止了百度爬虫,百度抓取也就失败来。本身是拒绝百毒的 考虑到还是大量的用户使用baidu而不是google的时候就决定要解决这个问题了。
+intro: Github Pages 由于某些原因禁止了百度爬虫,githu page 百度收录不。本身是拒绝百毒的 考虑到还是大量的用户使用baidu而不是google的时候就决定要解决这个问题了。
 categories: some
-keyword: JavaScript变量提升,JavaScript函数提升,JavaScript常见问题
+keyword: githu pages百度测试403,github pages 百度收录问题,百度收录
 author: li
 show_type: image
 show_intro: /res/img/page/some/github_baidu_s.jpg
