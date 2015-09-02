@@ -7,7 +7,7 @@ keyword: githu pages百度测试403,github pages 百度收录问题,百度收录
 author: li
 show_type: image
 show_intro: /res/img/page/some/github_baidu_s.jpg
-tags: [github,百度爬虫]
+tags: [github,百度爬虫,百度检测403]
 ---
 
 #解决Github Pages禁止百度爬虫的方法
