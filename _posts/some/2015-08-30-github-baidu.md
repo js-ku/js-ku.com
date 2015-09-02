@@ -50,6 +50,8 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 
 新建sh脚本。[Jekyll serve](http://jekyllrb.com/docs/usage/)
 
+	. /etc/profile
+	. ~/.bash_profile
 	cd youFolder
 	##放弃本地修改
 	git fetch --all
