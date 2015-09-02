@@ -47,7 +47,7 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 现在有一个问题？我们每次提交`Github`的文章的时候都需要去 阿里云 `git pull`
 考虑使用 定时任务 设定时间自动拉代码。
 
-新建sh脚本。
+新建sh脚本。[Jekyll serve](http://jekyllrb.com/docs/usage/)
 
 	cd youFolder
 	##放弃本地修改
