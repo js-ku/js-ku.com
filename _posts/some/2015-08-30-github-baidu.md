@@ -17,7 +17,8 @@ tags: [github,百度爬虫,百度检测403]
 
 ![github](/res/img/page/some/github_baidu_s.jpg) 
 
-###Google 搜索答案
+###Google 搜索答案 
+
 ####善用搜索引擎
 
 网上大部分说的都是 CDN 和 换供应商，`github`还是很难换掉。
@@ -49,14 +50,15 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 考虑使用 定时任务 设定时间自动拉代码。
 
 新建sh脚本。[Jekyll serve](http://jekyllrb.com/docs/usage/)
-
+        
+	# 环境变量问题又搞到3点多...
 	. /etc/profile
 	. ~/.bash_profile
 	cd youFolder
-	##放弃本地修改
+	# 放弃本地修改
 	git fetch --all
 	git reset --hard origin/gh-pages
-	##需要先启动jekyll serve -detach [-w]
+	# 需要先启动jekyll serve -detach [-w]
 	jekyll build
 
 添加任务
