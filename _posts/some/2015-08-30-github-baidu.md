@@ -74,6 +74,6 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 
 这些内容弄了两天 `ruby`的版本 `jekyll`安装，等等。如果有相关的问题可以直接回复或者邮件（`li#js-ku.com`）。
 <script>
-//加入我们吧 http://wwww.github.com/js-ku
+//加入我们吧 http://wwww.github.com/js-ku test 
 //var i = 0;setInterval(function(){location.hash=['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘'][i++%8]}, 50);
 </script>
