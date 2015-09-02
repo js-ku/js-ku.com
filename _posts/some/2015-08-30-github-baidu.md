@@ -10,7 +10,7 @@ show_intro: /res/img/page/some/github_baidu_s.jpg
 tags: [github,百度爬虫,百度检测403]
 ---
 
-#解决Github Pages禁止百度爬虫的问题
+#解决 Github Pages 禁止百度爬虫的问题
 
 
 >Github 因为某些原因拒绝了百度的爬虫 
