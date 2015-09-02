@@ -17,7 +17,7 @@ tags: [github,百度爬虫,百度检测403]
 
 ![github](/res/img/page/some/github_baidu_s.jpg) 
 
-###Google 搜索答案�
+###Google 搜索答案
 ####善用搜索引擎
 
 网上大部分说的都是 CDN 和 换供应商，`github`还是很难换掉。
