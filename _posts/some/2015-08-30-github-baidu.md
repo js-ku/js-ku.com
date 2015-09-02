@@ -1,6 +1,6 @@
 ---
 layout: detail_tmp
-title: 解决Github Pages禁止百度爬虫的方法
+title: 解决Github Pages禁止百度爬虫的问题
 intro: Github Pages 由于某些原因禁止了百度爬虫,githu page 百度收录不。本身是拒绝百毒的 考虑到还是大量的用户使用baidu而不是google的时候就决定要解决这个问题了。
 categories: some
 keyword: githu pages百度测试403,github pages 百度收录问题,百度收录
@@ -10,7 +10,8 @@ show_intro: /res/img/page/some/github_baidu_s.jpg
 tags: [github,百度爬虫,百度检测403]
 ---
 
-#解决Github Pages禁止百度爬虫的方法
+#解决Github Pages禁止百度爬虫的问题
+
 
 >Github 因为某些原因拒绝了百度的爬虫  
 
