@@ -58,7 +58,7 @@ Github Pages 是支持静态页面的，Jekyll [github 官方](https://help.gith
 	# 放弃本地修改
 	git fetch --all
 	git reset --hard origin/gh-pages
-	# 需要先启动jekyll serve -detach [-w]
+	# 需要先启动jekyll serve --detach [-w]
 	jekyll build
 
 添加任务
