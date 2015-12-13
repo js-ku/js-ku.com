@@ -15,4 +15,4 @@ paginate_path: "page_:num"
 indet_title: js开发库 - 开放，分享与协作
 index_keyword: 前端开发,JavaScritp 教程,java 教程,ruby 教程,python 教程,html5 教程,css3 教程,web app 教程,cocos-js教程
 index_description: js开发库，协作开发，
-index_author: https://github.com/Da-Li/js-ku
+index_author: https://github.com/js-ku/js-ku.com
