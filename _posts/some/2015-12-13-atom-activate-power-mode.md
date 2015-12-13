@@ -21,6 +21,7 @@ tags: [编辑器,Atom]
 ###插件下载 
 
 ![Atom-install-pack](/res/img/page/some/atom-mac-os-x-to-install-pack.png)
+
 ![Atom-install-pack](/res/img/page/some/install-packages-page.png)
 
 ## 下载完就尽情装B吧
