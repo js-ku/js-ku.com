@@ -1,5 +1,6 @@
 encoding: utf-8
-
+# jekyll 3.0+
+gems: [jekyll-paginate]
 baseurl : 
 permalink : /:categories/:title.html
 markdown: kramdown
