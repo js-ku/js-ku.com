@@ -6,7 +6,7 @@ categories: some
 keyword: activate-power-mode 下载，atom activate-power-mode
 author: li
 show_type: image
-show_intro: https://atom.io/assets/screenshot-main-f609d95c29e5190787970f8c83762fcb.png
+show_intro: https://github-atom-io-herokuapp-com.global.ssl.fastly.net/assets/screenshot-main-80d8c9841da6ed11c9d87f31136a4ca9.png
 tags: [编辑器,Atom]
 ---
 
