@@ -14,7 +14,7 @@ tags: [编辑器,Atom]
 
 
 
-![Atom](https://atom.io/assets/screenshot-main-f609d95c29e5190787970f8c83762fcb.png) 
+![Atom](https://github-atom-io-herokuapp-com.global.ssl.fastly.net/assets/screenshot-main-80d8c9841da6ed11c9d87f31136a4ca9.png) 
 
 >Atom Github开源的ide，未来可能会收费。
 
